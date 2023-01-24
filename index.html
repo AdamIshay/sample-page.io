@@ -42,7 +42,7 @@
 
 
 <img class="summary-img" src="./images/recurrence.PNG" style="width:50%;"><br>
-We use a recurrent encoder-only model without masking attention. This allows the    <p>
+We use a recurrent encoder-only model without masking attention. The unrestricted attention allows the any element to pay attention to any other element, and the recurrence encourages a general reasoning algorithm to be learned.    <p>
 
 
 
@@ -58,23 +58,25 @@ We use a recurrent encoder-only model without masking attention. This allows the
 <div class="content">
     <h2>Grounding Visual Sudoku</h2>
     <p>
-        We use the ungrounded visual Sudoku dataset (right) which does not leak any supervision of given Sudoku elements. This means that the recurrent transformer must ground the Sudoku element images using just the solution.” (last row).<br><br>
         <img class="summary-img" src="./images/datasets.PNG" style="width:50%;"><br>
-We feed eighty-one 28x28 pixel images of a Sudoku board into the recurrent transformer, which has a small convolutional neural network in the embedding layer.
+        We use the ungrounded visual Sudoku dataset (right) which does not leak any supervision of given Sudoku elements. This means that the recurrent transformer must ground the Sudoku element images using just the solution.” (last row).<br><br>
+
         <img class="summary-img" src="./images/visual_sudoku.png" style="width:50%;">
 
 
-
   </p>
+  We feed eighty-one 28x28 pixel images of a Sudoku board into the recurrent transformer, which has a small convolutional neural network in the embedding layer.
+
 </div>
 
 <div class="content">
-    <h2>Recurrence Analysis</h2>
+    <h2>Analysis</h2>
     <p>
-
         <img class="summary-img" src="./images/attention.png" style="width:70%;"><br>
-              We compare the performance of our full algorithm (green line) to different variations, evaluating the reconstruction quality by measuring the PSNR score as a function of number optimization iterations and running time in minutes. Below, we visually show the inversion results after 200 iterations of our full algorithm (on right) compared to other baselines.<br><br>
+        We can plot the learn attention scores for some board which represent row, column and box constraints associated with Sudoku. These constraints are captured with 3 heads, while when training with only one head, some the constraints are combined into one head.
+
         <img class="summary-img" src="./images/recurrent_steps.png" style="width:70%;">
+        Adding more recurrent steps, even more than what was trained for gives better performance. This model was trained with 32 recurrent steps, but during inference we can apply more steps (up to 64 shown here). The number of recurrences required is proportional to the hardness of the problem, with the easier boards with more givens not needing as many steps and the harder boards needing increasingly more. 
   </p>
 </div>
 
