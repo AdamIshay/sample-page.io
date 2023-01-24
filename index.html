@@ -62,7 +62,7 @@ We use a recurrent encoder-only model without masking attention. The unrestricte
         We use the ungrounded visual Sudoku dataset (right) which does not leak any supervision of given Sudoku elements. This means that the recurrent transformer must ground the Sudoku element images using just the solution.” (last row).<br><br>
 
 
-        <img class="summary-img" src="./images/visual_sudoku.png" style="width:50%;"><br>
+        <img class="summary-img" src="./images/visual_sudoku.PNG" style="width:50%;"><br>
 
 
 
@@ -73,10 +73,10 @@ We use a recurrent encoder-only model without masking attention. The unrestricte
 <div class="content">
     <h2>Analysis</h2>
     <p>
-        <img class="summary-img" src="./images/attention.png" style="width:70%;"><br>
+        <img class="summary-img" src="./images/attention.PNG" style="width:70%;"><br>
         We can plot the learn attention scores for some board which represent row, column and box constraints associated with Sudoku. These constraints are captured with 3 heads, while when training with only one head, some the constraints are combined into one head.
 
-        <img class="summary-img" src="./images/recurrent_steps.png" style="width:70%;"><br>
+        <img class="summary-img" src="./images/recurrent_steps.PNG" style="width:70%;"><br>
         Adding more recurrent steps, even more than what was trained for gives better performance. This model was trained with 32 recurrent steps, but during inference we can apply more steps (up to 64 shown here). The number of recurrences required is proportional to the hardness of the problem, with the easier boards with more givens not needing as many steps and the harder boards needing increasingly more.
   </p>
 </div>
@@ -84,14 +84,14 @@ We use a recurrent encoder-only model without masking attention. The unrestricte
 <div class="content">
     <h2>Straight-Through Estimators (STE)</h2>
     <p>
-        <img class="summary-img" src="./images/sudoku_ste.png" style="width:70%;"><br>
-        <img class="summary-img" src="./images/attention_ste.png" style="width:45%;"><br>
+        <img class="summary-img" src="./images/sudoku_ste.PNG" style="width:70%;"><br>
+        <img class="summary-img" src="./images/attention_ste.PNG" style="width:45%;"><br>
         We inject constraints into the recurrent transformer using straight-through estimators. Additionally we add attention constraints.
-        <img class="summary-img" src="./images/combined_ste.png" style="width:70%;"><br>
+        <img class="summary-img" src="./images/combined_ste.PNG" style="width:70%;"><br>
 
         We combine this into a constraint loss and get improvements combining them with the supervision loss (left) and using the constraint loss with unlabeled data provides a performance increase in a semi-supervised setting.
 
-        <img class="summary-img" src="./images/ste_results.png" style="width:70%;"><br>
+        <img class="summary-img" src="./images/ste_results.PNG" style="width:70%;"><br>
 
   </p>
 </div>
